@@ -1,0 +1,29 @@
+<h1>Order</h1>
+
+<div class="row col-10" *ngIf="order$ | async as order">
+  <table class="table">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Product</th>
+        <th class="quntity-col text-center">Quantity</th>
+        <th class="price-col text-right">Price</th>
+        <hr />
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of order">
+        <td>
+          <img
+            class="thumbnail"
+            [src]="item.product.imageUrl"
+            [alt]="item.product.title"
+          />
+        </td>
+        <td>{{ item.product.title }}</td>
+        <td class="text-center">{{ item.quantity }}</td>
+        <td class="text-right">{{ item.product.price | currency }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

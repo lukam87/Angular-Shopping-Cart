@@ -1,0 +1,11 @@
+<ng-container *ngIf="isLoading; else order">
+  <div class="text-center">
+    <div class="spinner-border text-primary" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+</ng-container>
+
+<ng-template #order>
+  <og-orders [orders]="orders"></og-orders>
+</ng-template>

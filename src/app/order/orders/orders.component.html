@@ -1,0 +1,18 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Date</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let order of orders">
+      <td>{{ order?.name }}</td>
+      <td>{{ order?.datePlaced | date }}</td>
+      <td>
+        <a [routerLink]="['/order/details', order.key]">View</a>
+      </td>
+    </tr>
+  </tbody>
+</table>

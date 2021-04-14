@@ -1,0 +1,62 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container">
+    <a class="navbar-brand" routerLink="/">
+      <i class="fa fa-leaf" aria-hidden="true"></i>
+    </a>
+
+    <a
+      class="navbar-brand ml-5"
+      routerLink="shopping/shopping-cart"
+      *ngIf="totalCount$ | async as totalCount"
+    >
+      <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+      <span class="badge badge-warning badge-pill">{{
+        totalCount.totalCount || 0
+      }}</span>
+    </a>
+
+    <div>
+      <div class="collapse navbar-collapse me-2" id="navbarSupportedContent">
+        <ul class="navbar-nav">
+          <ng-template #login>
+            <li class="nav-item active">
+              <a class="nav-link" routerLink="/auth/login">Login</a>
+            </li>
+          </ng-template>
+
+          <li class="nav-item active" *ngIf="!appUser">
+            <a class="nav-link" routerLink="/auth/register">Register</a>
+          </li>
+
+          <li class="nav-item dropdown" ngbDropdown *ngIf="appUser; else login">
+            <a
+              class="nav-link"
+              id="navbarDropdown"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+              ngbDropdownToggle
+            >
+              {{ appUser?.displayName }}
+            </a>
+            <div
+              ngbDropdownMenu
+              class="dropdown-menu"
+              aria-labelledby="navbarDropdown"
+            >
+              <og-navbar
+                [appUser]="appUser"
+                [menuItems]="menuItems"
+                (logout)="handleMenuAction($event)"
+              ></og-navbar>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="container mt-4">
+  <router-outlet></router-outlet>
+</div>

@@ -1,0 +1,10 @@
+<ng-container *ngFor="let menu of menuItems">
+  <a
+    *ngIf="!menu.isAdmin || menu.isAdmin === appUser.isAdmin"
+    ngbDropdownItem
+    class="dropdown-item"
+    [routerLink]="menu.path"
+    (click)="linkAction(menu.action)"
+    >{{ menu.label }}</a
+  >
+</ng-container>

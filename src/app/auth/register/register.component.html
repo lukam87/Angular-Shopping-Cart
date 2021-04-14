@@ -1,0 +1,79 @@
+<div class="card">
+  <div class="card-header">
+    <h5>Register</h5>
+  </div>
+  <form #form="ngForm" (ngSubmit)="register(form.value)">
+    <div class="card-body">
+      <div class="form-group">
+        <label for="name">Username</label>
+        <input
+          type="name"
+          id="name"
+          class="form-control"
+          name="name"
+          #name="ngModel"
+          [(ngModel)]="registerFields.name"
+          placeholder="Enter your username"
+          required
+        />
+        <div class="text-danger" *ngIf="name.touched && name.invalid">
+          Username is required!
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          class="form-control"
+          name="email"
+          #email="ngModel"
+          [(ngModel)]="registerFields.email"
+          placeholder="Enter your email"
+          required
+        />
+        <div class="text-danger" *ngIf="email.touched && email.invalid">
+          Email is required!
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          class="form-control"
+          name="password"
+          #password="ngModel"
+          [(ngModel)]="registerFields.password"
+          placeholder="Enter your password"
+          required
+        />
+        <div class="text-danger" *ngIf="password.touched && password.invalid">
+          Password is required!
+        </div>
+      </div>
+      <div class="form-check mb-2">
+        <input
+          class="form-check-input position-static mr-1"
+          type="checkbox"
+          id="checkbox"
+          name="isAdmin"
+          #isAdmin="ngModel"
+          [(ngModel)]="registerFields.isAdmin"
+        />
+        <label class="form-check-label" for="checkbox"
+          >Register as Seller</label
+        >
+      </div>
+    </div>
+    <div class="card-footer">
+      <button
+        class="btn btn-primary btn-block"
+        type="submit"
+        [disabled]="form.invalid"
+      >
+        Register
+      </button>
+    </div>
+  </form>
+</div>
